@@ -1,21 +1,34 @@
 (function () {
-  window.h = (tag, opts = {}) => {
-    const element = document.createElement(tag)
+
+  var iterateObject = function(object, callback) {
+    for (var property in object) {
+      if (object.hasOwnProperty(property)) {
+        callback(property, object[property])
+      }
+    }
+  }
+
+  window.h = function (tag, opts) {
+    opts = opts || {}
+    var element = document.createElement(tag)
 
     if (opts.attrs) {
-      Object.entries(opts.attrs).forEach(([key, value]) => {
+      iterateObject(opts.attrs, function(key, value) {
         element.setAttribute(key, value)
       })
     }
 
     if (opts.listeners) {
-      Object.entries(opts.listeners).forEach(([key, value]) => {
+      iterateObject(opts.listeners, function(key, value) {
         element.addEventListener(key, value)
       })
     }
 
     if (opts.children) {
-      opts.children.forEach(child => element.appendChild(child))
+      for (var i = 0; i < opts.children.length; i++) {
+        var child = opts.children[i]
+        element.appendChild(child)
+      }
     }
 
     if (opts.content) {
