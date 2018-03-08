@@ -2,7 +2,7 @@
   "name": "h",
   "version": "1.0.0",
   "description": "Lightweight DOM manipulation tool",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "build": "uglifyjs ./src/main.js -c -o ./dist/h.js"
   },

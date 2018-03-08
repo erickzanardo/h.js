@@ -8,7 +8,7 @@
     }
   }
 
-  window.h = function (tag, opts) {
+  var h = function (tag, opts) {
     opts = opts || {}
     var element = document.createElement(tag)
 
@@ -36,5 +36,11 @@
     }
 
     return element
+  }
+
+  if (typeof(module) !== "undefined") {
+    module.exports = h
+  } else {
+    window.h = h
   }
 })()
